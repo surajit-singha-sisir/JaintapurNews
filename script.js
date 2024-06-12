@@ -12,7 +12,10 @@ function openNav() {
 
   const resNav = document.querySelector(".parentResNav");
   const resNav2 = document.querySelectorAll(".parentResNav > div");
-  const childNav = document.querySelector(".parentResNav .childResNav");
+  const parentResNavBG = document.querySelector(
+    ".parentResNav .parentResNavBG"
+  );
+  const childResNav = document.querySelector(".parentResNav .childResNav");
   let isOpen = true;
 
   // ONCLICK EVENT
@@ -26,6 +29,8 @@ function openNav() {
 
       // RESPONSIVE NAVBAR SHOW
       resNav.style.display = "flex";
+      // SHIFT ANIMATION
+      resNav.style.marginLeft = "0%"; //NOT WORKING
     } else {
       // AGAIN CLICK HAMBURGER IT DISAPPEAR
       line1.style = "";
@@ -33,23 +38,13 @@ function openNav() {
       line3.style = "";
       // RESPONSIVE NAVBAR SHOW
       resNav.style.display = "none";
+
+      // SHIFT ANIMATION
+      resNav.style.marginLeft = "100%"; //NOT WORKING
     }
     isOpen = !isOpen;
   };
 }
-// function navSlider() {
-//   let isOpen = true;
-
-//   hamburger.onclick = function () {
-//     if (isOpen) {
-//       childNav.style.width = "50%";
-//     } else {
-//       childNav.style.width = "0%";
-//     }
-//     isOpen = !isOpen;
-//   };
-// }
-
 function subMenu() {
   const menuName = document.querySelectorAll(".resNav2MenuName");
 
