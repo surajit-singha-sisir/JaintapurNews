@@ -22,7 +22,7 @@ function openNav() {
         "margin-left: -0.1rem; margin-top: 0.6rem; transform: rotate(45deg); transition: all 0.3s ease;";
       line2.style = "width: 0; opacity: 0;";
       line3.style =
-        "margin-left: -0.1rem; margin-top: -0.8rem; transform: rotate(-45deg); transition: all 1s ease;";
+        "margin-left: -0.1rem; margin-top: -0.8rem; transform: rotate(-45deg); transition: all 0.3s ease;";
 
       // RESPONSIVE NAVBAR SHOW
       resNav.style.display = "flex";
