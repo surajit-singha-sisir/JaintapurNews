@@ -173,6 +173,8 @@ function searchBarAnimation() {
   darkBackground.onclick = function () {
     searchBox.classList.remove("visible");
     darkBackground.style.top = "-100%";
+    search.style.display = 'block';
+    cross.style.display = 'none';
     isOpen = !isOpen;
   };
 }
