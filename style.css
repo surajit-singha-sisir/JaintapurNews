@@ -33,6 +33,8 @@ body {
     --borderColor: #ccc;
     --button-color: #f1f1f1;
     --button-color-hover: #d8dbdb;
+    --categoryHoverFontColor: #770909;
+    --gallerySubtitle: #2102af;
 
     /* SCROLLER */
     --scrollerWidth: 0.3rem;
@@ -54,9 +56,13 @@ body {
     --navHeight: 4rem;
     --searchBarWidth: 3rem;
     --searchBarHeight: 3rem;
+    --categoryFontSize: 1.2rem;
 
     /* Z-INDEX */
     --navBarZIndex: 5;
+
+    /* GRADIENT BACKGROUND */
+    --linear-gradient-background: linear-gradient(90deg, #87C0F4, #5381AB)
 }
 
 a {
@@ -100,6 +106,15 @@ li {
     width: 100%;
     top: 0;
     z-index: 5;
+}
+
+.category p {
+    font-size: var(--categoryFontSize);
+}
+
+.category:hover {
+    color: var(--categoryHoverFontColor);
+    cursor: pointer;
 }
 
 /* ELLIPSIS TEXT WITH 3 LINE */
@@ -524,6 +539,7 @@ section.hamburger {
     overflow: hidden;
     transition: all 0.2s ease;
 }
+
 .childNav .searchBar {
     position: relative;
     display: flex;
@@ -554,7 +570,7 @@ section.hamburger {
     gap: 0.5rem;
     padding: 0.5rem;
     border-radius: 0.2rem;
-    
+
     /* FOR JS */
     max-height: 0;
     opacity: 0;
@@ -629,6 +645,7 @@ section.hamburger {
     from {
         left: -100% !important;
     }
+
     to {
         left: 0 !important;
     }
@@ -854,7 +871,151 @@ section.hamburger {
 
 
 
+/* ----------------------------
+     NEWS GALLERY START
+------------------------------*/
+.newsGallery2 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
 
+.newsGallery2 .inner-newsGallery2 {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-direction: column;
+    margin: auto;
+}
+
+.inner-newsGallery2 .title-NewsGallery {
+    display: flex;
+    gap: 2rem;
+    height: inherit;
+    width: 100%;
+    padding: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.title-NewsGallery .icons {
+    width: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* GALLERY IMAGES */
+.inner-newsGallery2 .galleryImages {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.galleryImages .smallImages {
+    display: grid;
+    grid-template-columns: repeat(100px, 1fr);
+    align-content: center;
+    width: 25%;
+    height: 60%;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.smallImages .thumbs {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 3px 3px 3px 0px #00000050;
+}
+
+.smallImages .thumbs:nth-child(n + 1) {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.smallImages .thumbs:nth-child(n + 2) {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.smallImages .thumbs:nth-child(n + 3) {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.smallImages .thumbs:nth-child(n + 4) {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.galleryImages .displayGalleryImage {
+    position: relative;
+    display: flex;
+    width: 50%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    box-shadow: 5px 3px 3px 0px #00000030;
+    transition: all 0.3s ease;
+}
+
+.displayGalleryImage img {
+    border-radius: 0.5rem;
+}
+
+/* SUBTITLE */
+.displayGalleryImage .gallerySubtitle {
+    position: absolute;
+    width: 90Vw;
+    height: auto;
+    left: 50%;
+    top: 110%;
+    transform: translate(-50%, 0%);
+}
+.gallerySubtitle .inner-gallerySubtitle {
+    position: relative;
+    width: 100%;
+    min-height: 3rem;
+    max-height: 10rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EDEBEB;
+    overflow: hidden;
+}
+.inner-gallerySubtitle .keyframeMove {
+    width: inherit;
+    min-height: inherit;
+    max-height: inherit;
+    /* ANIMATION */
+    display: flex;
+    background: var(--linear-gradient-background);
+    animation: shiftLeft2Right 10s linear infinite;
+}
+.inner-gallerySubtitle p {
+    position: absolute;
+    font-size: var(--categoryFontSize);
+    color: var(--gallerySubtitle);
+}
+@keyframes shiftLeft2Right {
+    0% {
+        margin-left: -200%;
+    }
+    100% {
+        margin-left: 0%;
+    }
+}
+/* ----------------------------
+     NEWS GALLERY END
+------------------------------*/
 
 
 
