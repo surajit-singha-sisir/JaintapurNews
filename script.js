@@ -4,6 +4,7 @@ window.onload = function () {
   subMenu();
   fixedNav();
   searchBarAnimation();
+  newsGallery();
 };
 
 let isOpen = false;
@@ -178,3 +179,5 @@ function searchBarAnimation() {
     isOpen = !isOpen;
   };
 }
+
+
