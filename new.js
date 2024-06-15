@@ -1,26 +1,23 @@
 print = console.log;
+
 window.onload = function () {
   openNav();
   subMenu();
   fixedNav();
   searchBarAnimation();
-  newsGallery();
+  newsGallery(); // Make sure you have defined this function somewhere
 };
 
 let isOpen = false;
+
 function openNav() {
   const hamburger = document.getElementById("hamburger");
   const line1 = document.querySelector(".hamburger .line-1");
   const line2 = document.querySelector(".hamburger .line-2");
   const line3 = document.querySelector(".hamburger .line-3");
-
   const resNav = document.querySelector(".parentResNav");
-  const parentResNavBG = document.querySelector(
-    ".parentResNav .parentResNavBG"
-  );
-  const childResNav = document.querySelector(".parentResNav .childResNav");
+  const parentResNavBG = document.querySelector(".parentResNav .parentResNavBG");
 
-  // Function to open the menu
   function openMenu() {
     line1.style.transform = "rotate(45deg)";
     line1.style.marginTop = "0.6rem";
@@ -36,14 +33,12 @@ function openNav() {
 
     resNav.style.display = "flex";
     resNav.style.marginLeft = "0";
-    resNav.style.marginLeft = "0";
     resNav.style.transition = "margin-left 0.3s ease";
 
     document.body.style.overflow = "hidden";
     isOpen = true;
   }
 
-  // Function to close the menu
   function closeMenu() {
     line1.style.transform = "";
     line1.style.marginTop = "";
@@ -68,7 +63,6 @@ function openNav() {
     isOpen = false;
   }
 
-  // ONCLICK EVENT
   hamburger.onclick = function () {
     if (isOpen) {
       closeMenu();
@@ -77,7 +71,6 @@ function openNav() {
     }
   };
 
-  // Close menu when clicking outside of it
   parentResNavBG.onclick = function () {
     if (isOpen) {
       closeMenu();
@@ -86,21 +79,19 @@ function openNav() {
 }
 
 function subMenu() {
-  const menuName = document.querySelectorAll(".resNav2MenuName");
+  const menuNames = document.querySelectorAll(".resNav2MenuName");
 
-  menuName.forEach(function (item) {
+  menuNames.forEach(function (item) {
     item.onclick = function () {
       print(item);
-      const iconRotate = item.querySelector(
-        ".resNav2MenuName .bi-chevron-right"
-      );
+      const iconRotate = item.querySelector(".resNav2MenuName .bi-chevron-right");
       iconRotate.classList.toggle("iconRotate");
     };
   });
 
-  //   SHOW/HIDE MENUBAR TRANSITION
-  const allMenu = document.querySelectorAll(".resNav2Menu");
-  allMenu.forEach(function (item) {
+  const allMenus = document.querySelectorAll(".resNav2Menu");
+
+  allMenus.forEach(function (item) {
     item.onclick = function () {
       const subItem = item.querySelector(".resNavSubMenuBar");
 
@@ -115,7 +106,6 @@ function subMenu() {
       }
     };
 
-    // Add event listener to submenu items to stop event propagation
     const subMenuItems = item.querySelectorAll(".resNavSubMenuBar li");
     subMenuItems.forEach(function (subMenuItem) {
       subMenuItem.onclick = function (event) {
@@ -125,25 +115,24 @@ function subMenu() {
   });
 }
 
-// NAVBAR FIXED AFTER 500PX
 function fixedNav() {
-
-  const parentResNav = document.querySelector('.parentResNav');
-  // Initial setup: make sure the .sticky class is applied
-  parentResNav.classList.add("staticResNav");
+  const topContainer = document.querySelector(".topContainer");
+  const resNav = document.querySelector(".parentResNav");
+  print(topContainer);
 
   window.onscroll = function () {
-    if (window.pageYOffset > 300) {
-      parentResNav.classList.remove("staticResNav");
-      parentResNav.classList.add("fixedResNav");
+    if (window.pageYOffset > 500) {
+      topContainer.classList.remove("sticky");
+      topContainer.classList.add("fixed");
+      resNav.classList.add("navMarginFixed");
     } else {
-      parentResNav.classList.add("staticResNav");
-      parentResNav.classList.remove("fixedResNav");
+      topContainer.classList.remove("fixed");
+      topContainer.classList.add("sticky");
+      resNav.classList.remove("navMarginFixed");
     }
   };
 }
 
-// SEARCHBAR VISIBLE
 function searchBarAnimation() {
   const searchBar = document.querySelector(".searchBar");
   const searchBox = document.querySelector(".searchBar .searchBox");
@@ -169,7 +158,7 @@ function searchBarAnimation() {
   searchBox.onclick = function (event) {
     event.stopPropagation();
   };
-  // CLICK TO HIDE DARK BACKGROUND
+
   darkBackground.onclick = function () {
     searchBox.classList.remove("visible");
     darkBackground.style.top = "-100%";
@@ -179,59 +168,6 @@ function searchBarAnimation() {
   };
 }
 
-// NEWS GALLERY
 function newsGallery() {
-  const thumbs = document.querySelectorAll('.thumbs');
-  const displayGalleryImage = document.querySelector('.inner-displayGalleryImage img');
-  let currentIndex = 0;
-  const displayGalleryImageTitle = document.getElementById('displayGalleryImageTitle');
-  const keyframeMove = document.querySelector('.inner-gallerySubtitle .keyframeMove');
-  let intervalId;
-
-  // SET DEFAULT DISPLAY IMAGE
-  displayGalleryImage.src = thumbs[currentIndex].querySelector('img').src;
-
-  // UPDATE DEFAULT TITLE
-  displayGalleryImageTitle.innerHTML = thumbs[currentIndex].querySelector('.galImgTitle').innerHTML;
-
-  // AUTO DISPLAY IMAGE CHANGE BY 5 SECONDS
-  let autoChange = function () {
-      if (currentIndex == thumbs.length - 1) {
-          currentIndex = 0;
-      } else {
-          currentIndex++;
-      }
-
-      // UPDATE IMAGE
-      displayGalleryImage.src = thumbs[currentIndex].querySelector('img').src;
-      // UPDATE TITLE
-      displayGalleryImageTitle.innerHTML = thumbs[currentIndex].querySelector('.galImgTitle').innerHTML;
-  }
-
-  // Start the interval and store its ID
-  intervalId = setInterval(autoChange, 5000);
-
-  // CLICK TO CHANGE DISPLAY IMAGE
-  function clickToChange() {
-      thumbs.forEach(item => {
-          item.onclick = function () {
-              // IMAGE UPDATE
-              displayGalleryImage.src = item.querySelector('img').src;
-              // UPDATE TITLE
-              displayGalleryImageTitle.innerHTML = item.querySelector('.galImgTitle').innerHTML;
-
-              // RESTART ANIMATION ONCLICK
-              keyframeMove.classList.remove('keyframeMove');
-              void keyframeMove.offsetWidth;
-              keyframeMove.classList.add('keyframeMove');
-
-              // STOP THE AUTOCHANGE INTERVAL
-              clearInterval(intervalId);
-
-              // START AUTOCHANGE AGAIN AFTER 5 SECONDS
-              intervalId = setInterval(autoChange, 5000);
-          };
-      });
-  }
-  clickToChange();
+  // Define your newsGallery function here
 }
